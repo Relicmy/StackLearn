@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+    <div class="menu-container">
+        <div class="menu-item">
+            <ul class="ul-menu">
+                <li>
+                    <button class="menu-button">
+                        <a  href="{{ url_for('kuka') }}">Kuka</a>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <img src="../static/images/logo_menu.png" frameborder="0">
+    </div>
+{% endblock %}

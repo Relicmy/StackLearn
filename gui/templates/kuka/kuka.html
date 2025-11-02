@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <div class="kuka-menu">
+        <div class="item-kuka-menu" id="programming">
+            <h2>Программирование</h2>
+            <ul class="ul-menu">
+                <li>
+                    <button class="menu-button">
+                        <a href="{{ url_for('system_var') }}" >System var</a>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="item-kuka-menu" id="soft">
+            <h2>Софт</h2>
+            <ul class="ul-menu">
+                <li>
+                    <li><button class="menu-button">System var</button></li>
+                </li>
+            </ul>
+        </div>
+        <div class="item-kuka-menu" id="integration">
+            <h2>Интеграция</h2>
+            <ul class="ul-menu">
+                <li><button class="menu-button">System var</button></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
