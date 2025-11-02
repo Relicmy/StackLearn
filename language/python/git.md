@@ -3,7 +3,7 @@
 баш
 
 
-# Установи Git: https://git-scm.com/
+# Установи Git: pip freeze > requirements.txt
 # Проверь версию
 git --version / git -v
 
@@ -46,6 +46,7 @@ git add .
 git commit -m "Initial commit"
 git remote add origin git@github.com:Relicmy/название-репо.git
 git push -u origin main
+
 Вариант Б: Создасщтвф
 
 

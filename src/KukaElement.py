@@ -27,7 +27,7 @@ class SystemVar(MainMenu):
         
 if __name__ == "__main__":
     
-    def create_card()
+    pass
             
         
         
