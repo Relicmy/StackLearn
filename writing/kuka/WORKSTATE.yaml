@@ -1,0 +1,75 @@
+ - name-var: $WORKSTATE
+   sintax: SIGNAL $WORKSTATE1 $OUT[201]
+   discriptions: |
+      декартовы (Cartesian) рабочие зоны
+      📍 Где настраивается:
+      KUKA.WorkVisual → Project Data → Workspaces
+      Или в Machine Data → группа WORKSPACE
+      🛠 Как настроить (по шагам в WorkVisual):
+      В WorkVisual, откройте проект.
+      Перейдите:
+      Project Data → Workspaces.
+      Нажмите «Add» → выберите тип зоны:
+      Box (параллелепипед),
+      Cylinder (цилиндр),
+      Sphere (сфера).
+      Задайте параметры:
+      Для Box:
+      X min, X max,
+      Y min, Y max,
+      Z min, Z max,
+      (опционально) ограничение по ориентации: A, B, C.
+      База: укажите, в какой системе координат задаётся зона — обычно $WORLD или пользовательская $BASE.
+      Назначьте сигнал:
+      → Например, $WORKSTATE1.
+      В IOSYS.INI привяжите сигнал к выходу:
+      krl
+ 
+   example: |
+      ; В начале программы
+      INTERRUPT DECL 10 WHEN $OUT[201] == TRUE DO INTR_WORKSPACE_VIOLATION()
+      INTERRUPT ON 10
+
+      DEF INTR_WORKSPACE_VIOLATION()
+          $STOP = TRUE
+          ; Можно сохранить позицию:
+          GLOBAL glob_violation_pos : E6AXIS
+          glob_violation_pos = $AXIS_ACT_MEAS
+          ; Вывод сообщения
+          BAS.MSG("Нарушение рабочей зоны!")
+      END
+
+ - name-var: $AXWORKSTATE
+   sintax: SIGNAL $AXWORKSTATE1 $OUT[101]
+   discriptions: |
+      осевые рабочие зоны
+      📍 Где настраивается:
+      KUKA.WorkVisual → Machine Configuration → Axis Monitoring → Axis-Specific Workspaces
+      Или напрямую в Machine Data → группа AXIS_WORKSPACE
+      🛠 Как настроить (по шагам в WorkVisual):
+      Откройте проект робота в WorkVisual.
+      Перейдите:
+      Project Data → Machine Configuration → Axis Monitoring → Axis-Specific Workspaces.
+      Нажмите «Add» — появится запись Axis Workspace 1.
+      Укажите:
+      Axis: выберите ось (например, A1)
+      Min: минимальное значение (например, -90.0)
+      Max: максимальное значение (например, 90.0)
+      Назначьте сигнал:
+      → В поле Signal выберите или создайте сигнал, например $AXWORKSTATE1.
+      В файле IOSYS.INI должен быть привязан этот сигнал к выходу
+      ✅ После загрузки проекта в контроллер:
+      если A1 выйдет за –90…+90°, → $OUT[101] = TRUE. 
+   example: |
+      ; В начале программы
+      INTERRUPT DECL 10 WHEN $OUT[201] == TRUE DO INTR_AXWORKSPACE_VIOLATION()
+      INTERRUPT ON 10
+
+      DEF INTR_AXWORKSPACE_VIOLATION()
+          $STOP = TRUE
+          ; Можно сохранить позицию:
+          GLOBAL glob_violation_pos : E6AXIS
+          glob_violation_pos = $AXIS_ACT_MEAS
+          ; Вывод сообщения
+          BAS.MSG("Нарушение рабочей зоны!")
+      END

@@ -3,12 +3,6 @@ import yaml
 from pathlib import Path
 
 
-def parse_yaml(file_path):
-    
-    with open(Path(file_path), encoding="utf-8") as f:
-        data = yaml.safe_load(f)
-        return data
-
 def all_parse(folder_path):
     all_list = []
     folder_path = Path(folder_path)

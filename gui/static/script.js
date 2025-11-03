@@ -57,6 +57,7 @@ class KnowledgeBase {
     create_card(item){
         const card = document.createElement('div');
         card.className = "card"
+        const descriptionHtml = item.discriptions ? marked.parse(item.discriptions) : '';
         card.innerHTML = `
                         <div class="name-var">${this.escape(item['name-var'])}</div>
                         <div class="sintax">
@@ -65,7 +66,7 @@ class KnowledgeBase {
                         </div>
                         <div class="discriptions">
                             <div class="tag">Описание:</div>
-                            <div class="text">${this.escape(item.discriptions)}</div>
+                            <div class="text">${descriptionHtml}</div>
                         </div>
                         <div class="example">
                             <div class="tag">Пример:</div>

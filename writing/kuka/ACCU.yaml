@@ -1,4 +1,4 @@
- - name-var: $ACC
+ - name-var: $ACCU_STATE
    sintax: |
      DECL ACCU_STATE bat_state
      bat_state = $ACCU_STATE
