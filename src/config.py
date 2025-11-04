@@ -28,7 +28,7 @@ if True:
 """"""""""""""""""""""""""""""""""""""""""
 if True:
     dc_button_kuka = {"programming": {
-                    "System var": "system_var", "KRL": "", "EthernetKRL": "", "Блочное програм-ние": "",
+                    "System var": "system_var_kuka", "KRL": "", "EthernetKRL": "", "Блочное програм-ние": "",
                     "Экосистема": ""},
                  
                     "soft": {
@@ -55,7 +55,7 @@ if True:
 """"""""""""""""""""""""""""""""""""""""""
 if True:
     dc_button_kawasaki = {"programming": {
-                        "System var": "", "AS": "", "Блочное програм-ние": "",
+                        "System var": "system_var_kawa", "AS": "", "Блочное програм-ние": "",
                         "Controller SDK/API": ""},
                     
                         "soft": {

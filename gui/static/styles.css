@@ -39,6 +39,9 @@ header {
 header > div {
     grid-column: 2/3;
 }
+header > a {
+    grid-column: 1/2;
+}
 
 .svg {
     background-color: #5a5a5a;

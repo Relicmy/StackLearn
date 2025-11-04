@@ -1,7 +1,7 @@
 "use strict"
 
 class KnowledgeBase {
-    constructor(data) {
+    constructor(data_kuka, data_kawa) {
         // add event
         this.buttonGroup = document.querySelector('.cmd-panel');
         
@@ -12,8 +12,22 @@ class KnowledgeBase {
         this.btnDown.addEventListener('click', this.onDownClick.bind(this));
 
         this.currentIndex = 0
-        this.system_var = data
+        this.system_var_kawa = data_kawa
+        this.system_var_kuka = data_kuka
+        this.system_var = null
         this.container = document.getElementById('group-container')
+        this.path = window.location.pathname;
+    }
+
+    init(){
+        if (this.path.includes("kuka")) {
+            this.system_var = this.system_var_kuka;
+            this.system_var_render()
+        }
+        if (this.path.includes("kawa")) {
+            this.system_var = this.system_var_kawa;
+            this.system_var_render()
+        }
     }
 
     onDownClick() {
@@ -26,10 +40,6 @@ class KnowledgeBase {
     onNextClick() {
         this.currentIndex++;
         this.system_var_render();
-    }
-
-    init(){
-        this.system_var_render()
     }
 
     system_var_render(){
@@ -89,14 +99,51 @@ class KnowledgeBase {
 }
 
 
+class HeaderText {
+    constructor() {
+        this.header = document.querySelector('.header-text');
+        this.path = window.location.pathname;
+    }
+
+    paste_header_text() {
+        if (!this.header) return;
+
+        let text = '❓ Неизвестный раздел';
+
+        if (this.path === '/' || this.path === '/index.html') {
+            text = '📘 База знаний';
+        }
+        else if (this.path.startsWith('/docs')) {
+            text = '📚 Документация';
+        }
+        else if (this.path.includes('kuka')) {
+            text = '🤖 KUKA ROBOTICS';
+        }
+        else if (this.path.includes('kawa')) {
+            text = '🤖 KAWASAKI ROBOTICS';
+        }
+
+        this.header.textContent = text;
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('/static/json/sys_var.json');
-        if (!response.ok) throw new Error('Ошибка загрузки');
-        const data = await response.json();
+        const [resKuka, resKawa] = await Promise.all([
+            fetch('/static/json/sys_var_kuka.json'),
+            fetch('/static/json/sys_var_kawasaki.json')
+        ]);
 
-        const kb = new KnowledgeBase(data);
+        if (!resKuka.ok || !resKawa.ok) throw new Error('Ошибка загрузки JSON');
+
+        const data_kuka = await resKuka.json();
+        const data_kawa = await resKawa.json();
+
+        const headerText = new HeaderText();
+        headerText.paste_header_text();
+        
+        const kb = new KnowledgeBase(data_kuka, data_kawa);
         kb.init();
     } catch (err) {
         console.error('Инициализация провалена:', err);

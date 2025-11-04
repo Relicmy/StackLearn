@@ -3,7 +3,7 @@ import yaml
 from pathlib import Path
 
 
-def all_parse(folder_path):
+def all_parse(folder_path, name_robot):
     all_list = []
     folder_path = Path(folder_path)
     if folder_path.is_dir():
@@ -25,15 +25,21 @@ def all_parse(folder_path):
                     
                     # if iteration file complite, add dict file data in all_list
                     all_list.append(dir_card)
-    # if iter dir complite all_list to json.dump
-    with open("gui/static/json/sys_var.json", 'w', encoding="utf-8") as file:
-        json.dump(all_list, file, ensure_ascii=False, indent=2)
-    
-
-                    
+    if name_robot.lower() == "kuka":
+        # if iter dir complite all_list to json.dump
+        with open("gui/static/json/sys_var_kuka.json", 'w', encoding="utf-8") as file:
+            json.dump(all_list, file, ensure_ascii=False, indent=2)
             
-# if __name__ == "__main__":
-#     meta = all_parse("kuka")
+    if name_robot.lower() == "kawasaki":
+                # if iter dir complite all_list to json.dump
+        with open("gui/static/json/sys_var_kawasaki.json", 'w', encoding="utf-8") as file:
+            json.dump(all_list, file, ensure_ascii=False, indent=2)
+        
+  
+            
+if __name__ == "__main__":
+    all_parse("kuka/Programming/system var", "kuka")
+    all_parse("kawasaki/Programming/system var", "kawasaki")
     
 
 

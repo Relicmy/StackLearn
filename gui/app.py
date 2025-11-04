@@ -20,9 +20,13 @@ def kuka():
     obj_button = KM.get_list_button()
     return render_template("kuka/kuka.html", obj_button=obj_button)
 
-@app.route('/kuka/system-var/')
-def system_var():
+@app.route('/kuka/system-var-kuka/')
+def system_var_kuka():
     return render_template('kuka/system_var.html')
+
+@app.route('/kawasaki/system-var-kawa/')
+def system_var_kawa():
+    return render_template('kawasaki/system_var.html')
 
 @app.route('/kawasaki/')
 def kawasaki():
