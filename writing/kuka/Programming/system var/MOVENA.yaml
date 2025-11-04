@@ -1,5 +1,7 @@
- - name-var: $CHCK_MOVENA
-   sintax: $MOVE_ENABLE = $IN[1]
+ - name-var: $CHECK_MOVENA
+   sintax: |
+    $CHECK_MOVENA == FALSE
+    $MOVE_ENABLE = $IN[1]
    discriptions: |
       Проверка корректности входа $MOVE_ENABLE в режиме Automatic External
       Назначение
@@ -11,7 +13,7 @@
 
       По умолчанию в KUKA вход $IN[1025] зарезервирован и всегда равен TRUE.
       Если вы ошибочно привяжете $MOVE_ENABLE к $IN[1025], то сигнал всегда будет активен, что нарушает принципы функциональной безопасности (например, согласно ISO 10218 или ISO 13849).
-      Чтобы предотвратить такую ошибку, KUKA вводит проверку через $CHCK_MOVENA
+      Чтобы предотвратить такую ошибку, KUKA вводит проверку через $CHECK_MOVENA
       Тип: BOOL
       Значения:
       TRUE — проверка включена: система следит, чтобы $MOVE_ENABLE не был привязан к $IN[1025].
@@ -19,7 +21,7 @@
       Значение по умолчанию: TRUE 
    example: |
     ; Проверяем, включена ли защита от неправильного $MOVE_ENABLE
-    IF $CHCK_MOVENA == FALSE THEN
+    IF $CHECK_MOVENA == FALSE THEN
         ; Вывод предупреждения (например, в диагностике)
         MsgNotify("Внимание проверка MOVE_ENABLE отключена")
     ENDIF

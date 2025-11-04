@@ -2,10 +2,18 @@
 
 {% block content %}
     <div class="sys-var-container">
-        <div id="group-container"></div>
-        <div class="right-button-group">
-            <button class="right-button" id="next-button">next</button>
-            <button class="right-button" id="down-button">down</button>
+        <div class="cmd-panel">
+            <div id="back-cmd-home-button"><a href="{{ url_for('main_menu') }}"><img class="cmd-panel-custom" src="{{ url_for('static', filename='images/home.svg') }}"></a></div>
+            <div id="back-cmd-chapter-button"><a href="{{ url_for('kuka') }}"><img class="cmd-panel-custom" src="{{ url_for('static', filename='images/menu.svg') }}"></a></div>
+            <div id="back-cmd-button"><img class="cmd-panel-custom" src="{{ url_for('static', filename='images/back.svg') }}"></div>
+            <div id="next-cmd-button"><img class="cmd-panel-custom" src="{{ url_for('static', filename='images/next.svg') }}"></div>
+            <div class="search-panel">
+                <input id="input-search" type="text" placeholder="Поиск..." class="search-input">
+                <button class="search-button">
+                    <img id="cmd-search-custom" class="cmd-panel-custom" src="{{ url_for('static', filename='images/search.svg') }}" alt="Search">
+                </button>
+            </div>
         </div>
+        <div id="group-container"></div>
     </div> 
 {% endblock %}

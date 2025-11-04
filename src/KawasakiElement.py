@@ -1,7 +1,7 @@
 from ElementGUI import MainMenu
 
 
-class KukaMenu(MainMenu):
+class KawasakiMenu(MainMenu):
     
     def __init__(self) -> None:
         super().__init__()
@@ -31,7 +31,3 @@ class KukaMenu(MainMenu):
 if __name__ == "__main__":
     
     pass
-            
-        
-        
-    

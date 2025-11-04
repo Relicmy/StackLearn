@@ -3,10 +3,10 @@
 class KnowledgeBase {
     constructor(data) {
         // add event
-        this.buttonGroup = document.querySelector('.right-button-group');
+        this.buttonGroup = document.querySelector('.cmd-panel');
         
-        this.btnNext = this.buttonGroup.querySelector('#next-button');
-        this.btnDown = this.buttonGroup.querySelector('#down-button');
+        this.btnNext = this.buttonGroup.querySelector('#next-cmd-button');
+        this.btnDown = this.buttonGroup.querySelector('#back-cmd-button');
 
         this.btnNext.addEventListener('click', this.onNextClick.bind(this));
         this.btnDown.addEventListener('click', this.onDownClick.bind(this));

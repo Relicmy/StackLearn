@@ -4,13 +4,27 @@
 {% block content %}
     <div class="menu-container">
         <div class="menu-item">
+        {% if obj_button %}
             <ul class="ul-menu">
+            {% for key, val in obj_button.items() %}
                 <li>
-                    <button class="menu-button">
-                        <a  href="{{ url_for('kuka') }}">Kuka</a>
-                    </button>
+                    {% if val and val.strip() %}
+                        <a href="{{ url_for(val) }}">
+                            <button class="menu-button">
+                                {{ key }}
+                            </button>
+                        </a>
+                    {% else %}
+                        <a href="#">
+                            <button class="menu-button">
+                                {{ key }}
+                            </button>
+                        </a>
+                    {% endif %}
                 </li>
+            {% endfor %}
             </ul>
+        {% endif %}
         </div>
         <img src="../static/images/logo_menu.png" frameborder="0">
     </div>
