@@ -7,12 +7,11 @@
 </head>
     <body>
         <div class="background-svg"><div class="svg"></div></div>
-        <div class="title">
-            <h1>📘 База знаний</h1>
-            <button id="home" class="back-button" onclick="goBack()">
-                <a href="{{ url_for('main_menu') }}">Menu</a>      
-            </button>
-        </div>
+        <header class="main-header">
+            <div>
+                <h1>📘 База знаний</h1>
+            </div>
+        </header>
         <main>
             {% block content %}
             {% endblock %}
